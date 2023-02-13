@@ -6,7 +6,7 @@ const AddTutorial = () => {
     const initialTutorialState = {
         id: null,
         title: "",
-        description: "",
+        body: "",
         published: false,
     };
     const [tutorial, setTutorial] = useState(initialTutorialState);
@@ -14,7 +14,7 @@ const AddTutorial = () => {
 
     const handleInputChange = event => {
         const { name, value } = event.target;
-        //whenever something is change the name  and the value of that particular name will be stored in the name, value variable
+        //whenever something is change the name  and the value of that <tag/>, particular name will be stored in the name, value in value variable
         setTutorial({ ...tutorial, [name]: value });
         //then sari value state mai chali jaigi 
         console.log(tutorial)
@@ -23,7 +23,7 @@ const AddTutorial = () => {
     const saveTutorial = () => {
         var data = {
             title: tutorial.title,             //value coming from state
-            description: tutorial.description  //value coming from state
+            body: tutorial.body                //value coming from state
         };
 
         TutorialService.create(data)
@@ -31,7 +31,7 @@ const AddTutorial = () => {
                 setTutorial({
                     id: response.data.id,
                     title: response.data.title,
-                    description: response.data.description,
+                    body: response.data.body,
                     published: response.data.published
                 });
                 console.log(tutorial)
@@ -71,15 +71,15 @@ const AddTutorial = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="description">Description</label>
+                        <label htmlFor="body">body</label>
                         <input
                             type="text"
                             className="form-control"
-                            id="description"
+                            id="body"
                             required
-                            value={tutorial.description}
+                            value={tutorial.body}
                             onChange={handleInputChange}
-                            name="description"
+                            name="body"
                         />
                     </div>
 
